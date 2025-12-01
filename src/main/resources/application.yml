@@ -1,0 +1,65 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dms?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: a001
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: qwen:1.8b
+  data:
+    elasticsearch:
+      repositories:
+       enabled: true
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: kikZN3+4cDO=NpOhd=*G
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      adjust-dates-to-context-time-zone: false
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰映射
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印SQL日志
+  global-config:
+    db-config:
+      id-type: auto # 主键策略
+      table-underline: true # 开启表名下划线转驼峰
+      logic-delete-field: isDeleted # 逻辑删除字段名
+      logic-delete-value: 1 # 逻辑删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
+jwt:
+  secret : fx2AAfK84Rw06g9JNsYLyjtXffdmH48TcjI2UOScbkQOWoPJroF2isqHnBjJkMGQMzZSRJHT78R5IOnSZMylXQ==
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
